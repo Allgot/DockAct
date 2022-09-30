@@ -1,3 +1,3 @@
 FROM ocaml/opam
-COPY entrypoint.ml /entrypoint.ml
-ENTRYPOINT ["/entrypoint.ml"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
