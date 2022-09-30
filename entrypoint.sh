@@ -1,5 +1,7 @@
 #!/bin/bash
 
+opam init
+eval $(opam env)
 opam install dune merlin ocaml-lsp-server odoc ocamlformat utop dune-release
 
 dune build
