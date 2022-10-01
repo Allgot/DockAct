@@ -10,7 +10,17 @@
 # dune exec ./hello_world.exe
 # EOF
 
-opam install dune --yes
+apt-get update
+apt-get install software-properties-common
+
+add-apt-repository ppa:avsm/ppa
+apt update
+apt install opam
+
+opam init
+eval $(opam config env)
+
+opam install dune dune-release --yes
 eval $(opam config env)
 
 dune build OcamlTest.exe
