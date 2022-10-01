@@ -2,8 +2,8 @@
 
 sudo su <<EOF
 opam init --yes --disable-sandboxing
-opam install dune merlin ocaml-lsp-server odoc ocamlformat utop dune-release --yes
-eval $(opam env)
+opam install dune #merlin ocaml-lsp-server odoc ocamlformat utop dune-release --yes
+eval $(opam config env)
 
 dune build
 
