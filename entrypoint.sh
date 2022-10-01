@@ -3,12 +3,14 @@
 sudo su <<EOF
 opam init --yes --disable-sandboxing
 opam install dune #merlin ocaml-lsp-server odoc ocamlformat utop dune-release --yes
+EOF
+
 eval $(opam config env)
 
 dune build
 
 dune exec ./main.exe
-EOF
+
 
 echo "Hello $1"
 time=$(date)
