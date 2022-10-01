@@ -11,11 +11,11 @@
 # EOF
 
 apt-get update
-apt-get install software-properties-common
+apt-get install software-properties-common --yes
 
-add-apt-repository ppa:avsm/ppa
+add-apt-repository ppa:avsm/ppa --yes
 apt update
-apt install opam
+apt install opam --yes
 
 opam init
 eval $(opam config env)
