@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo su - <<EOF
+sudo su <<EOF
 opam init --yes
 eval $(opam env)
 opam install dune merlin ocaml-lsp-server odoc ocamlformat utop dune-release --yes
