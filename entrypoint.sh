@@ -1,15 +1,13 @@
 #!/bin/bash
 
 sudo su <<EOF
-opam init --yes --disable-sandboxing
-eval $(opam env) 
 
-opam install dune #merlin ocaml-lsp-server odoc ocamlformat utop dune-release --yes
-eval $(opam env) 
+opam install dune # merlin ocaml-lsp-server odoc ocamlformat utop dune-release --yes
+eval $(opam config env)
 
-dune build
+dune build OcamlTest.exe
 
-dune exec ./main.exe
+dune exec ./hello_world.exe
 EOF
 
 echo "Hello $1"
