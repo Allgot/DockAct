@@ -1,1 +1,1 @@
-print_endline ("Can I execute OCaml in Docker container action??")
+print_endline "::set-output name=string::Test Ocaml"
