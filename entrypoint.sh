@@ -2,7 +2,7 @@
 
 echo "1234" | su -
 
-opam init --yes
+opam init --yes --disable-sandboxing
 eval $(opam config env)
 
 dune build ocaml_test.exe
