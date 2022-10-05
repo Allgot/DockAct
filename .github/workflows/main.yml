@@ -1,8 +1,7 @@
-# on: [push]
-
 on:
   issues: 
-    types: [opened]
+    types:
+      - opened
 
 jobs:
   ocaml_test_job:
