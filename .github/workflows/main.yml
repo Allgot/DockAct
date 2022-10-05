@@ -12,11 +12,11 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: OCaml action step
+      - name: OCaml test action step
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: ocaml_test
         # with:
         #   who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
       - name: Get the output string
-        run: echo "The output was ${{ steps.hello.outputs.string }}"
+        run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"
