@@ -14,7 +14,7 @@ This action executes OCaml program and logs the output.
 
 The time we greeted you. -->
 
-## 'string'
+## 'string`
 
 The output string of inside OCaml program.
 
@@ -24,4 +24,4 @@ The output string of inside OCaml program.
 <!-- with:
   who-to-greet: 'Mona the Octocat' -->
 
-  uses: actions/ocaml-test-action@v1 ('not yet published!!')
+  uses: actions/ocaml-test-action@v1 ('not yet published!!`)
