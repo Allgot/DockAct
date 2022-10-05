@@ -19,4 +19,4 @@ jobs:
         #   who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
       - name: Get the output string
-        run: echo "The output was ${{ steps.hello.outputs.time }}"
+        run: echo "The output was ${{ steps.hello.outputs.string }}"
