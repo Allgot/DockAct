@@ -1,5 +1,10 @@
 on:
-  issues
+  issues:
+    types:
+      - opened
+
+permissions:
+  issues: read
 
 jobs:
   ocaml_test_job:
