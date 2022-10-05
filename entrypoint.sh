@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "1234" | su -
+
 opam init --yes
 eval $(opam config env)
 
