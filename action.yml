@@ -1,4 +1,4 @@
-name: 'OCaml Action'
+name: 'OCaml Test Action'
 description: 'Test OCaml and getting output string'
 # inputs:
 #   who-to-greet:  # id of input

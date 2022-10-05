@@ -1,10 +1,10 @@
-on: [push]
+# on: [push]
 
-# on:
-#   issues: [opened]
+on:
+  issues: [opened]
 
 jobs:
-  hello_world_job:
+  ocaml_test_job:
     runs-on: ubuntu-latest
     name: A job to test OCaml
     steps:
