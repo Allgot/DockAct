@@ -3,13 +3,16 @@ on:
     types:
       - opened
 
-permissions:
-  issues: read
+
 
 jobs:
   ocaml_test_job:
     runs-on: ubuntu-latest
     name: A job to test OCaml
+
+    permissions:
+      issues: read
+
     steps:
       # To use this repository's private action,
       # you must check out the repository
