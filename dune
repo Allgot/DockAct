@@ -1,2 +1,2 @@
 (executable
- (name OcamlTest))
+ (name ocaml_test))
