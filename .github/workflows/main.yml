@@ -7,8 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to test OCaml
 
-    permissions:
-      issues: read
+    permissions: read_all
 
     steps:
       # To use this repository's private action,
