@@ -9,7 +9,7 @@ inputs:
     required: true
 outputs:
   string: # output of string
-    description: 'The output of OCaml program'
+    description: 'The contents of issue'
 runs:
   using: 'docker'
   image: 'Dockerfile'
