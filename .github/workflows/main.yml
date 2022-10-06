@@ -12,9 +12,8 @@ jobs:
 
     steps:
       - env:
-        EVENT_CONTEXT: ${{ toJSON(github.evnet) }}
-        run: |
-          echo $EVENT_CONTEXT
+        EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: echo $EVENT_CONTEXT
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
