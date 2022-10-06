@@ -23,8 +23,4 @@ jobs:
           issue_contents: ${{ toJSON(github.event.issue.body) }}
       # Use the output from the `ocaml_test` step
       - name: Get the output string
-        env: 
-          EVENT_CONTEXT: ${{ toJSON(github.event) }}
-        run: |
-          echo $EVENT_CONTEXT
-          echo "The output was ${{ steps.ocaml_test.outputs.string }}"
+        run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"

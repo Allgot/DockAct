@@ -6,6 +6,6 @@ opam install dune
 
 dune build ocaml_test.exe
 
-dune exec ./ocaml_test.exe #$1 $2
+dune exec ./ocaml_test.exe $1 $2
 
-echo "$1 and $2"
+# echo "$1 and $2"
