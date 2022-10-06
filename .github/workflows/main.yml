@@ -25,5 +25,6 @@ jobs:
       - name: Get the output string
         env: 
           EVENT_CONTEXT: ${{ toJSON(github.event) }}
-        run: echo $EVENT_CONTEXT
-        run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"
+        run: |
+          echo $EVENT_CONTEXT
+          echo "The output was ${{ steps.ocaml_test.outputs.string }}"
