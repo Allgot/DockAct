@@ -17,8 +17,9 @@ jobs:
       - name: OCaml test action step
         uses: ./ # Uses an action in the root directory
         id: ocaml_test
-        # with:
-        #   who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
+        with:
+          issue_num: github.event.issue.issue.number
+          issue_contents: github.event.issue.issue.body
+      # Use the output from the `ocaml_test` step
       - name: Get the output string
         run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"

@@ -1,15 +1,17 @@
 name: 'OCaml Test Action'
 description: 'Test OCaml and getting output string'
-# inputs:
-#   who-to-greet:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'Action'
+inputs:
+  issue_num:  # issue number
+    description: 'Number of the issue'
+    required: true
+  issue_contents: # issue contents
+    description: 'Contents of the issue'
+    required: true
 outputs:
   string: # output of string
     description: 'The output of OCaml program'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  # args:
-  #   - ${{ inputs.who-to-greet }}
+  args:
+    - ${{ inputs.issue_num, inputs.issue_contents }}
