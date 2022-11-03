@@ -25,7 +25,7 @@ let issue_list =
                         List.iter (print_endline) body_list *)
                         extract_issues json_body
 
-let sim_header = Cohttp.Header.of_list [("X-RapidAPI-Key", "f9c960d74fmsh9e6d0ba2830075fp1d6e07jsn0d10e516a37f"); ("X-RapidAPI-Host", "twinword-text-similarity-v1.p.rapidapi.com"); ("content-type", "application/x-www-form-urlencoded")]
+let sim_header = Cohttp.Header.of_list [("X-RapidAPI-Key", Sys.argv.(4)); ("X-RapidAPI-Host", "twinword-text-similarity-v1.p.rapidapi.com"); ("content-type", "application/x-www-form-urlencoded")]
 
 let () = List.iter (fun issue_contents -> 
     let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in (* Sys.argv.(2) *)

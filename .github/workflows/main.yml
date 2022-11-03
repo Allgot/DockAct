@@ -23,6 +23,9 @@ jobs:
           issue_contents: ${{ github.event.issue.body }}
           repository_url: ${{ github.event.issue.repository_url }}
           rapid_key: ${{ secrets.RAPID_KEY }}
+      - name: Key comparison
+        if: ${{ secrets.RAPID_KEY == 'f9c960d74fmsh9e6d0ba2830075fp1d6e07jsn0d10e516a37f' }}
+        run: echo key is same!
       # Use the output from the `ocaml_test` step
       - name: Get the output string
         run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"
