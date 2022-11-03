@@ -7,6 +7,12 @@ inputs:
   issue_contents: # issue contents
     description: 'Contents of the issue'
     required: true
+  repository_url: # repository name
+    description: 'Url of the repository'
+    required: true
+  rapid_key: # RapidAPI's key
+    description: 'Key for the RapidAPI'
+    required: true
 outputs:
   string: # output of string
     description: 'The contents of issue'
@@ -16,3 +22,5 @@ runs:
   args:
     - ${{ inputs.issue_num }}
     - ${{ inputs.issue_contents }}
+    - ${{ inputs.repository_url }}
+    - ${{ secrets.rapid_key }}
