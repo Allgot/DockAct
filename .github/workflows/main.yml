@@ -23,7 +23,7 @@ jobs:
         with:
           issue_num: ${{ github.event.issue.number }}
           issue_contents: ${{ github.event.issue.body }}
-          repository_url: ${{ github.repository }}
+          repository_path_name: ${{ github.repository }}
           rapid_key: ${{ env.rapid_key }}
       # Use the output from the `ocaml_test` step
       - name: Get the output string
