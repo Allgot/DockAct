@@ -1,4 +1,4 @@
 FROM prosyslab/dude:test
 COPY entrypoint.sh /entrypoint.sh
-RUN env
+RUN ls -a
 ENTRYPOINT ["/entrypoint.sh"]
