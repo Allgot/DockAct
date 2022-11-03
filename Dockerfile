@@ -1,4 +1,4 @@
 FROM prosyslab/dude:test
 COPY entrypoint.sh /entrypoint.sh
-RUN cd etc; cat bash.bashrc
+RUN env
 ENTRYPOINT ["/entrypoint.sh"]
