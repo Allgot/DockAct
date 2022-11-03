@@ -25,9 +25,6 @@ jobs:
           issue_contents: ${{ github.event.issue.body }}
           repository_url: ${{ github.event.issue.repository_url }}
           rapid_key: ${{ env.rapid_key }}
-      - name: Key comparison
-        if: ${{ env.rapid_key == '' }}
-        run: echo key is empty!
       # Use the output from the `ocaml_test` step
       - name: Get the output string
         run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"

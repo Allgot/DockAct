@@ -39,5 +39,7 @@ let () = List.iter (fun issue_contents ->
     
 
     let body = Lwt_main.run body in
-        print_endline body
+        let json_body = Yojson.Basic.from_string body in
+            let open Yojson.Basic.Util in
+                Printf.printf "Similarity: %s\n" (Float.to_string (List.hd ([json_body] |> filter_member "similarity" |> filter_number)))
 ) issue_list
