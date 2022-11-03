@@ -31,11 +31,11 @@ let sim_header = Cohttp.Header.of_list [("X-RapidAPI-Key", Sys.argv.(4)); ("X-Ra
     let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in (* Sys.argv.(2) *)
     let text2 = Yojson.Basic.to_string (`String issue_contents) in
     let body =
-        Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (resp, body) ->
-            let code = resp |> Response.status |> Code.code_of_status in
+        Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (_, body) ->
+            (* let code = resp |> Response.status |> Code.code_of_status in
                 Printf.printf "Response code: %d\n" code;
                 Printf.printf "Headers: %s\n" (resp |> Response.headers |> Header.to_string);
-            Cohttp_lwt.Body.to_string body in
+            Cohttp_lwt.Body.to_string body in *)
     
 
     let body = Lwt_main.run body in
@@ -44,7 +44,7 @@ let sim_header = Cohttp.Header.of_list [("X-RapidAPI-Key", Sys.argv.(4)); ("X-Ra
                 Printf.printf "Similarity: %s\n" (Float.to_string (List.hd ([json_body] |> filter_member "similarity" |> filter_number)))
 ) issue_list *)
 
-let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in
+let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in    
 let text2 = Yojson.Basic.to_string (`String issue_contents) in
     let body =
         Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (resp, body) ->
