@@ -16,4 +16,4 @@ env LESSOPEN=| /usr/bin/lesspipe %s > /dev/null
 env OLDPWD=/roote > /dev/null
 PATH=/root/.opam/default/bin:$PATH > /dev/null
 
-dune exec ./ocaml_test.exe $1 $2 $3 $4 # $1: issue_num, $2: issue_contents, $3: repository_path_name, $4: api_key
+dune exec ./ocaml_test.exe $1 "$2" $3 $4 # $1: issue_num, $2: issue_contents, $3: repository_path_name, $4: api_key
