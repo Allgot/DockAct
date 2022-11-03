@@ -5,7 +5,7 @@ open Cohttp_lwt_unix
 (* open Yojson *)
 
 let body =
-    Client.get ~headers:(Cohttp.Header.init_with "accept" "application/vnd.github+json") (Uri.of_string ("https://api.github.com/repos/" ^ Sys.argv.(3) ^ "issues?state=all")) >>= fun (resp, body) -> 
+    Client.get ~headers:(Cohttp.Header.init_with "accept" "application/vnd.github+json") (Uri.of_string ("https://api.github.com/repos/" ^ Sys.argv.(3) ^ "/issues?state=all")) >>= fun (resp, body) -> 
         let code = resp |> Response.status |> Code.code_of_status in
             Printf.printf "Response code: %d\n" code;
             Printf.printf "Headers: %s\n" (resp |> Response.headers |> Header.to_string);
