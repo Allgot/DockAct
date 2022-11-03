@@ -30,14 +30,14 @@ let sim_header = Cohttp.Header.of_list [("X-RapidAPI-Key", Sys.argv.(4)); ("X-Ra
 let () = List.iter (fun issue_contents -> 
     let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in
     let text2 = Yojson.Basic.to_string (`String issue_contents) in
-    Printf.printf "Compare %s with %s\n" text1 text2
-    if text1 != text2 then
-        let body =
-            Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (_, body) ->
-                (* let code = resp |> Response.status |> Code.code_of_status in *)
-                    (* Printf.printf "Response code: %d\n" code; *)
-                    (* Printf.printf "Headers: %s\n" (resp |> Response.headers |> Header.to_string); *)
-                Cohttp_lwt.Body.to_string body in
+    let () = Printf.printf "Compare %s with %s\n" text1 text2 in
+        if text1 != text2 then
+            let body =
+                Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (_, body) ->
+                    (* let code = resp |> Response.status |> Code.code_of_status in *)
+                        (* Printf.printf "Response code: %d\n" code; *)
+                        (* Printf.printf "Headers: %s\n" (resp |> Response.headers |> Header.to_string); *)
+                    Cohttp_lwt.Body.to_string body in
 
     let body = Lwt_main.run body in
         let json_body = Yojson.Basic.from_string body in
