@@ -22,6 +22,7 @@ jobs:
           issue_num: ${{ github.event.issue.number }}
           issue_contents: ${{ github.event.issue.body }}
           repository_url: ${{ github.event.issue.repository_url }}
+          rapid_key: ${{ secrets.rapid_key }}
       # Use the output from the `ocaml_test` step
       - name: Get the output string
         run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"

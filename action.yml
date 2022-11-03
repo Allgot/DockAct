@@ -23,4 +23,4 @@ runs:
     - ${{ inputs.issue_num }}
     - ${{ inputs.issue_contents }}
     - ${{ inputs.repository_url }}
-    - ${{ secrets.rapid_key }}
+    - ${{ inputs.rapid_key }}
