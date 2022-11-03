@@ -26,5 +26,7 @@ jobs:
           repository_url: ${{ github.event.issue.repository_url }}
           rapid_key: ${{ env.rapid_key }}
       # Use the output from the `ocaml_test` step
+      - name: Get the api_url
+        run: echo "${{ github.api_url }}""
       - name: Get the output string
         run: echo "The output was ${{ steps.ocaml_test.outputs.string }}"
