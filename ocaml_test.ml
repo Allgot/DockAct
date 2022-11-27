@@ -7,7 +7,6 @@ module ConNum = Map.Make(String)
 let map_ConNum = ref ConNum.empty
 
 let rec get_issues page_num res =
-    Printf.printf "getting issues....\n";
     let body =
         Client.get ~headers: (Cohttp.Header.init_with "accept" "application/vnd.github+json") (Uri.of_string ("https://api.github.com/repos/" ^ Sys.argv.(3) ^ "/issues?state=all&per_page=100&" ^ "page=" ^ (Int.to_string page_num))) >>= fun (_, body) ->
             Cohttp_lwt.Body.to_string body in
@@ -28,16 +27,16 @@ let rec get_issues page_num res =
     let issue_list = fst issue_tup in
     let num_list = snd issue_tup in
 
-    let _ = List.iter2 (fun content num ->
-        Printf.printf "contnet: %s, num: %d" content num;
-        if num != int_of_string (Sys.argv.(1)) then
-          let _ = map_ConNum := ConNum.add content num !map_ConNum in
-          Printf.printf "put %d with the key of %s\n" num content;
-    ) issue_list num_list in
-            
-
     if List.length issue_list == 0 then []
-    else issue_list @ (get_issues (page_num+1) res)
+    else
+        let _ = List.iter2 (fun content num ->
+            Printf.printf "contnet: %s, num: %d\n" content num;
+            if num != int_of_string (Sys.argv.(1)) then
+            let _ = map_ConNum := ConNum.add content num !map_ConNum in
+            Printf.printf "put %d with the key of %s\n" num content;
+        ) issue_list num_list in
+                
+        issue_list @ (get_issues (page_num+1) res)
 
 let sim_header = Cohttp.Header.of_list [("X-RapidAPI-Key", Sys.argv.(4)); ("X-RapidAPI-Host", "twinword-text-similarity-v1.p.rapidapi.com"); ("content-type", "application/x-www-form-urlencoded")]
 
