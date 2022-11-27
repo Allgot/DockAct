@@ -1,22 +1,24 @@
-# OCaml test docker action
+# Dude-test
 
-This action executes OCaml program and logs the output.
+This action is triggered when a new issue has created.   
+Then it compares the new issue's contents with existing issues' contents, and detect possible duplications.
 
-<!-- ## Inputs -->
+## Inputs
 
-<!-- ## `who-to-greet`
+## `issue_num`
 
-**Required** The name of the person to greet. Default `"World"`. -->
+**Required** The issue's number.
+
+## `issue_contents`
+
+**Required** The issue's contents.
 
 ## Outputs
 
-<!-- ## `time`
+## `dup`
 
-The time we greeted you. -->
-
-## `string`
-
-The output string of inside OCaml program.
+If possible duplications are deteced, it will contains the list of existing issues.
+(`not yet implemented!!`)
 
 ## Example usage
 
@@ -24,4 +26,9 @@ The output string of inside OCaml program.
 <!-- with:
   who-to-greet: 'Mona the Octocat' -->
 
-  uses: actions/ocaml-test-action@v1 (`not yet published!!`)
+```
+uses: actions/ocaml-test-action@v1 # not yet published!!   
+with:   
+    issue_num: ${{ github.event.issue.number }}   
+    issue_contents: ${{ github.event.issue.body }}
+```

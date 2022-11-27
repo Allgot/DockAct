@@ -1,4 +1,11 @@
-#!/bin/bash
+#!/bin/bash -l
+
+# opam init --yes
+# eval $(opam env)
+# opam install dune --yes
+# opam install cohttp-lwt-unix --yes --confirm-level=unsafe-yes
+# opam install lwt_ssl --yes --confirm-level=unsafe-yes
+# opam install yojson --yes --confirm-level=unsafe-yes
 
 # eval $(opam env) # 제대로 못 잡아주는중.....
 
@@ -15,5 +22,7 @@ env TERM=xterm > /dev/null
 env LESSOPEN=| /usr/bin/lesspipe %s > /dev/null
 env OLDPWD=/roote > /dev/null
 PATH=/root/.opam/default/bin:$PATH > /dev/null
+
+# dune build ocaml_test.exe
 
 dune exec ./ocaml_test.exe $1 "$2" $3 $4 # $1: issue_num, $2: issue_contents, $3: repository_path_name, $4: api_key
