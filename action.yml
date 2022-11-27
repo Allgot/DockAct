@@ -17,7 +17,7 @@ inputs:
     description: 'Acees token for GitHub'
     required: true 
 outputs:
-  string: # possible duplicated issue's number
+  dup_num: # possible duplicated issue's number
     description: 'The number of detected issue'
 runs:
   using: 'docker'

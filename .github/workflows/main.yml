@@ -29,4 +29,4 @@ jobs:
           repo_key: ${{ env.repo_key }}
       # Use the output from the `dup_scan` step
       - name: Get the output issue number
-        run: echo "The output was ${{ steps.dup_scan.outputs.string }}"
+        run: echo "The output was ${{ steps.dup_scan.outputs.dup_num }}"
