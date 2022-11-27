@@ -47,6 +47,7 @@ let max_contents = ref ""
 let () = List.iter (fun issue_contents -> 
     let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in
     let text2 = Yojson.Basic.to_string (`String issue_contents) in
+    Printf.printf "Text1:%s\nText2:%s\n\n" text1 text2;
 
     if ConNum.mem text2 (!map_ConNum) then
         let _ = Printf.printf "Comparison %s and %s\n" text1 text2 in
