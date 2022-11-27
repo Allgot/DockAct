@@ -49,7 +49,7 @@ let () = List.iter (fun issue_contents ->
     let text2 = Yojson.Basic.to_string (`String issue_contents) in
     Printf.printf "Text1:%s\nText2:%s\n\n" text1 text2;
 
-    if ConNum.mem text2 (!map_ConNum) then
+    if ConNum.mem issue_contents (!map_ConNum) then
         let _ = Printf.printf "Comparison %s and %s\n" text1 text2 in
         let body =
             Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (_, body) ->
