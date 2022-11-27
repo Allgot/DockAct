@@ -29,6 +29,7 @@ let rec get_issues page_num res =
     let num_list = snd issue_tup in
 
     let _ = List.iter2 (fun content num ->
+        Printf.printf "contnet: %s, num: %d" content num;
         if num != int_of_string (Sys.argv.(1)) then
           let _ = map_ConNum := ConNum.add content num !map_ConNum in
           Printf.printf "put %d with the key of %s\n" num content;
