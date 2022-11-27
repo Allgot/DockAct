@@ -4,20 +4,21 @@ on:
       - opened
 
 jobs:
-  dude:
+  duplication_detect_job:
     runs-on: ubuntu-latest
-    name: A job to scan and inform duplications
+    name: A job to detect duplication among issues
 
     # permissions: read-all
     env:
       rapid_key: ${{ secrets.RAPID_KEY }}
+      repo_key: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Duplication scan
+      - name: Duplication scan action step
         uses: ./ # Uses an action in the root directory
         id: dup_scan
         with:
@@ -25,6 +26,7 @@ jobs:
           issue_contents: ${{ github.event.issue.body }}
           repository_path_name: ${{ github.repository }}
           rapid_key: ${{ env.rapid_key }}
+          repo_key: ${{ env.repo_key }}
       # Use the output from the `dup_scan` step
-      - name: Get the possible duplicated issue's number
-        run: echo "Possible duplication found. Refer to ${{ steps.dup_scan.outputs.dup_num }}"
+      - name: Get the output issue number
+        run: echo "The output was ${{ steps.dup_scan.outputs.string }}"
