@@ -29,12 +29,14 @@ let rec get_issues page_num res =
 
     if List.length issue_list == 0 then []
     else
+        let _ = Printf.printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAa" in
         let _ = List.iter2 (fun content num ->
             Printf.printf "contnet: %s, num: %d\n" content num;
             if num != int_of_string (Sys.argv.(1)) then
             let _ = map_ConNum := ConNum.add content num !map_ConNum in
             Printf.printf "put %d with the key of %s\n" num content;
         ) issue_list num_list in
+        let _ = Printf.printf "BBBBBBBBBBBBBBBBBBBBBBBBBBB" in
                 
         issue_list @ (get_issues (page_num+1) res)
 
