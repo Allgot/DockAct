@@ -32,8 +32,8 @@ let rec get_issues page_num res =
         let _ = List.iter2 (fun content num ->
             Printf.printf "contnet: %s, num: %d\n" content num;
             if num != int_of_string (Sys.argv.(1)) then
-            let _ = map_ConNum := ConNum.add content num !map_ConNum in
-            Printf.printf "put %d with the key of %s\n" num content;
+                let _ = map_ConNum := ConNum.add content num !map_ConNum in
+                Printf.printf "put %d\n" num;
         ) issue_list num_list in
                 
         issue_list @ (get_issues (page_num+1) res)
@@ -47,7 +47,6 @@ let max_contents = ref ""
 let () = List.iter (fun issue_contents -> 
     let text1 = Yojson.Basic.to_string (`String Sys.argv.(2)) in
     let text2 = Yojson.Basic.to_string (`String issue_contents) in
-    let () = Printf.printf "Compare %s with %s\n" text1 text2 in
         let body =
             Client.get  ~headers:sim_header (Uri.of_string ("https://twinword-text-similarity-v1.p.rapidapi.com/similarity/?" ^ "text1=" ^ text1 ^ "&" ^ "text2=" ^ text2)) >>= fun (_, body) ->
                 Cohttp_lwt.Body.to_string body in
@@ -56,22 +55,23 @@ let () = List.iter (fun issue_contents ->
         let json_body = Yojson.Basic.from_string body in
             let open Yojson.Basic.Util in
                 let cur_sim = List.hd ([json_body] |> filter_member "similarity" |> filter_number) in
-                    if cur_sim > threshold_sim && cur_sim > !max_sim then
+                    if cur_sim > threshold_sim && cur_sim > (!max_sim) then
                         let _ = max_sim := cur_sim in
                         let _ = max_contents := issue_contents in
                         Printf.printf "max updated! sim %f, contents %s\n" !max_sim !max_contents;
 ) (get_issues 1 [])
 
-let _ =
-    if !max_sim == -1.0 then Sys.command ("echo \"dup_num=-1\" >> $GITHUB_OUTPUT")
-    else Sys.command ("echo \"dup_num=" ^ (Int.to_string (ConNum.find !max_contents !map_ConNum)) ^ "\" >> $GITHUB_OUTPUT")
+let _ = Printf.printf "%s has %f\n" !max_contents !max_sim
 
+let _ =
+    if !max_sim == (-1.0) then Sys.command ("echo \"dup_num=-1\" >> $GITHUB_OUTPUT")
+    else Sys.command ("echo \"dup_num=" ^ (Int.to_string (ConNum.find !max_contents !map_ConNum)) ^ "\" >> $GITHUB_OUTPUT")
 let detected_num = (ConNum.find !max_contents !map_ConNum)
 
 let body =
     (* Leave a comment *)
     let comment_body = Cohttp_lwt.Body.of_string (Yojson.Basic.to_string (
-        `Assoc[("body", (`String ("Possible duplication detected. Refer to #" ^ (Int.to_string (ConNum.find !max_contents !map_ConNum)))))]
+        `Assoc[("body", (`String ("Possible duplication detected. Refer to #" ^ (Int.to_string detected_num))))]
     )) in
     let comment_header = Cohttp.Header.add_authorization (Cohttp.Header.init_with "accept" "application/vnd.github+json") (Cohttp.Auth.credential_of_string ("Bearer " ^ Sys.argv.(5))) in
 
