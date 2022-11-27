@@ -7,6 +7,7 @@ module ConNum = Map.Make(String)
 let map_ConNum = ref ConNum.empty
 
 let rec get_issues page_num res =
+    Printf.printf "getting issues....\n";
     let body =
         Client.get ~headers: (Cohttp.Header.init_with "accept" "application/vnd.github+json") (Uri.of_string ("https://api.github.com/repos/" ^ Sys.argv.(3) ^ "/issues?state=all&per_page=100&" ^ "page=" ^ (Int.to_string page_num))) >>= fun (_, body) ->
             Cohttp_lwt.Body.to_string body in
