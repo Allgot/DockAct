@@ -1,5 +1,8 @@
 name: 'Duplication Detecting Action'
 description: 'Scan every existing issue and inform the issuer if any duplication detected'
+branding:
+  icon: 'alert-circle'
+  color: 'blue'
 inputs:
   issue_num:  # issue number
     description: 'Number of the new issue'
