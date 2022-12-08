@@ -1,13 +1,6 @@
 #!/bin/bash -l
 
-# opam init --yes
-# eval $(opam env)
-# opam install dune --yes
-# opam install cohttp-lwt-unix --yes --confirm-level=unsafe-yes
-# opam install lwt_ssl --yes --confirm-level=unsafe-yes
-# opam install yojson --yes --confirm-level=unsafe-yes
-
-# eval $(opam env) # 제대로 못 잡아주는중.....
+pwd
 
 env CAML_LD_LIBRARY_PATH=/root/.opam/default/lib/stublibs:/root/.opam/default/lib/ocaml/stublibs:/root/.opam/default/lib/ocaml > /dev/null
 env OCAML_TOPLEVEL_PATH=/root/.opam/default/lib/toplevel > /dev/null
